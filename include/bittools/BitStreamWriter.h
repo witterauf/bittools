@@ -16,7 +16,7 @@ public:
     virtual void write(value_type value, size_type bits) = 0;
     virtual void writeBuffer(const uint8_t* data, size_t bits);
     virtual auto bitOffset() const -> size_type = 0;
-    virtual void align(size_type alignment) = 0;
+    virtual void align(size_type alignment);
 };
 
 class MemoryBitStreamWriter : public BitStreamWriter
@@ -33,8 +33,6 @@ public:
 	/// @param value value to write
 	/// @param bits length in bits
 	void write(value_type value, size_type bits) override;
-
-    void align(size_type alignment) override;
 
 	/// Get the current offset relative to target.
     virtual auto bitOffset() const -> size_type override;

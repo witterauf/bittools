@@ -18,6 +18,12 @@ void BitStreamWriter::writeBuffer(const uint8_t* data, size_t bits)
     }
 }
 
+void BitStreamWriter::align(size_type alignment)
+{
+    auto const newOffset = alignAt(bitOffset(), alignment);
+    write(0, newOffset - bitOffset());
+}
+
 MemoryBitStreamWriter::MemoryBitStreamWriter(stream_base_type* target, size_type startOffset)
     : m_target{ target }, m_offset{ startOffset } {}
 
@@ -80,12 +86,6 @@ void MemoryBitStreamWriter::write(value_type value, size_type bits)
         }
     }
     m_offset += bits;
-}
-
-void MemoryBitStreamWriter::align(size_type alignment)
-{
-    auto const newOffset = alignAt(m_offset, alignment);
-    write(0, newOffset - m_offset);
 }
 
 void ManagedBitStreamWriter::write(value_type value, size_type bits)

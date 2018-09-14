@@ -3,6 +3,7 @@ set(BITTOOLS_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../include/)
 set(BITTOOLS_HEADERS
     ${BITTOOLS_INCLUDE_DIR}/bittools/Algorithms.h
     ${BITTOOLS_INCLUDE_DIR}/bittools/BitStreamWriter.h
+    ${BITTOOLS_INCLUDE_DIR}/bittools/StringBitStreamWriter.h
     ${BITTOOLS_INCLUDE_DIR}/bittools/BitField.h
     ${BITTOOLS_INCLUDE_DIR}/bittools/BitMap.h
 )
@@ -10,6 +11,7 @@ set(BITTOOLS_HEADERS
 add_library(BitTools
     ${BITTOOLS_HEADERS}
     BitStreamWriter.cc
+    StringBitStreamWriter.cc
 )
 target_include_directories(BitTools
     INTERFACE
